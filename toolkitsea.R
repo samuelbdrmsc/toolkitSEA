@@ -1,12 +1,4 @@
-# robust_plots_complete.R
-# Robust, ready-to-run plotting script.
-# Replace the path below if needed, then source() or run line-by-line.
-#
-# This script:
-# - Loads the CSV
-# - Cleans numeric columns (with diagnostics for problematic rows)
-# - Recomputes CFR
-# - Produces and saves five PNG plots (handles NAs safely)
+
 
 # ================
 # 0. Set file path
@@ -14,15 +6,15 @@
 csv_path <- "C:/Users/HP/Downloads/country_wise_latest.csv"  # <- change if needed
 
 # ================
-# 1. Read data
+# 1. Reading data
 # ================
 df <- read.csv(csv_path, stringsAsFactors = FALSE, check.names = FALSE)
 cat("Loaded:", csv_path, " | Rows:", nrow(df), " | Cols:", ncol(df), "\n")
 
 # ================
-# 2. Prepare / clean
+# 2. Prepare / cleaning data
 # ================
-# Normalize column names
+# Normalizing column names
 names(df) <- tolower(names(df))
 names(df) <- gsub("[^a-z0-9_]", "_", names(df))
 names(df) <- gsub("_+", "_", names(df))
@@ -53,7 +45,7 @@ if (!("country" %in% names(df))) {
   cat("Note: renamed first column to 'country'.\n")
 }
 
-# Convert numeric columns if present
+# Converting numeric columns if present
 for (col in c("confirmed", "deaths", "recovered", "active", "new_cases")) {
   if (col %in% names(df)) {
     df[[col]] <- safe_num(df[[col]], col)
@@ -178,6 +170,7 @@ setwd("C:/Users/HP/Downloads"
 
   
  
+
 
 
 
